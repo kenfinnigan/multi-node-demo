@@ -8,11 +8,11 @@ app.post('/msg', async (req, res) => {
     const message = req.body;
     
     if (!message.msg) {
-        return res.status(400).send('Invalid message format');
+        throw new Error('Invalid message format');
     }
     
     if (message.msg.includes('fail')) {
-        return res.status(500).send('Something went wrong');
+        throw new Error('Something went wrong - we failed!');
     }
 
     res.setHeader('Content-Type', 'text/plain');
